@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mortgage Flyer Generator</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="no-print">
+    <h1>Mortgage Flyer Generator</h1>
+    <p class="tagline">Enter property details and generate a one-page side-by-side scenario flyer.</p>
+  </header>
+
+  <section class="controls no-print">
+    <form id="flyer-form">
+      <fieldset>
+        <legend>Property</legend>
+        <label>Address
+          <input type="text" id="address" placeholder="123 Main St, City, ST 00000" required />
+        </label>
+        <div class="row">
+          <label>Beds<input type="number" id="beds" min="0" step="1" value="3" /></label>
+          <label>Baths<input type="number" id="baths" min="0" step="0.5" value="2" /></label>
+          <label>Sq Ft<input type="number" id="sqft" min="0" step="1" value="1800" /></label>
+          <label>Year Built<input type="number" id="year" min="1800" step="1" value="2000" /></label>
+        </div>
+        <label>List / Purchase Price ($)
+          <input type="number" id="price" min="0" step="1000" value="450000" required />
+        </label>
+        <label>County (drives property-tax estimate)
+          <select id="county"></select>
+        </label>
+        <label class="inline">Override tax rate (% / yr, optional)
+          <input type="number" id="taxOverride" min="0" step="0.01" placeholder="auto from county" />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Loan Assumptions</legend>
+        <div class="row">
+          <label>Interest Rate (%)<input type="number" id="rate" min="0" step="0.01" value="6.75" /></label>
+          <label>Term (years)<input type="number" id="term" min="1" step="1" value="30" /></label>
+          <label>Insurance Rate (% / yr)<input type="number" id="insRate" min="0" step="0.01" value="0.35" /></label>
+          <label>PMI Rate (% / yr)<input type="number" id="pmiRate" min="0" step="0.01" value="0.50" /></label>
+        </div>
+        <p class="hint">PMI applies only when down payment is below 20%.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Down Payment Scenarios</legend>
+        <div class="row scenarios">
+          <label>Scenario 1 (%)<input type="number" class="dp" min="0" max="100" step="0.5" value="3" /></label>
+          <label>Scenario 2 (%)<input type="number" class="dp" min="0" max="100" step="0.5" value="5" /></label>
+          <label>Scenario 3 (%)<input type="number" class="dp" min="0" max="100" step="0.5" value="10" /></label>
+          <label>Scenario 4 (%)<input type="number" class="dp" min="0" max="100" step="0.5" value="20" /></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Branding (optional)</legend>
+        <label>Prepared By<input type="text" id="agentName" placeholder="Your Name, Lender / Agent" /></label>
+        <label>Contact<input type="text" id="agentContact" placeholder="phone / email / NMLS#" /></label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="primary">Generate Flyer</button>
+        <button type="button" id="printBtn">Print / Save PDF</button>
+      </div>
+    </form>
+  </section>
+
+  <main id="flyer" class="flyer" hidden>
+    <div class="flyer-header">
+      <div>
+        <h2 id="f-address">—</h2>
+        <p id="f-meta" class="meta">—</p>
+      </div>
+      <div class="price-block">
+        <span class="label">Listed at</span>
+        <span id="f-price" class="price">—</span>
+      </div>
+    </div>
+
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>Monthly Breakdown</th>
+          <th id="hdr-1">—</th>
+          <th id="hdr-2">—</th>
+          <th id="hdr-3">—</th>
+          <th id="hdr-4">—</th>
+        </tr>
+      </thead>
+      <tbody id="scenario-body"></tbody>
+    </table>
+
+    <div class="flyer-footnotes">
+      <p id="f-assumptions" class="assumptions">—</p>
+      <p class="disclaimer">
+        Estimates only. Property tax uses county-level average. Insurance and PMI are estimated using flat percentages.
+        Income-needed figures assume the housing payment is the only major recurring debt and use the 28% (housing) and
+        36% (total debt) qualifying ratios. Actual rates, taxes, and insurance vary; consult your lender.
+      </p>
+      <p id="f-branding" class="branding"></p>
+    </div>
+  </main>
+
+  <script src="counties.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
