@@ -6,7 +6,7 @@ Score each agent 0–100.
 |---|---|---|
 | 12-month closed volume ($) | 40% | Percentile rank among agents in the list. Agents in the top 2% get capped at 70% of this factor (hard to win, already served). |
 | Momentum | 25% | Last 6 months vs. prior 6 months transaction count. Growth = higher score. |
-| Price-point fit | 20% | Full points if avg sale price is $500k–$1.2M; scale down outside that band. |
+| Price-point fit | 20% | Full points if avg sale price is $325k–$650k (typical for the greater Manchester, NH corridor); scale down outside that band. |
 | Tenure | 15% | 3–15 years licensed = full points; under 2 or over 25 = half. |
 
 Rules:
