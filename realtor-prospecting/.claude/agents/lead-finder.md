@@ -12,7 +12,7 @@ Process:
 
 1. Search for brokerages with offices in or serving those zip codes.
 2. Visit each brokerage's public agent roster to collect agent names, brokerage, office, and public contact info.
-3. Where possible, confirm the agent holds an active Virginia license (Virginia DPOR license lookup). Record the license number and first-licensed year if shown.
+3. Where possible, confirm the agent holds an active New Hampshire license (NH Office of Professional Licensure and Certification license lookup). Record the license number and first-licensed year if shown.
 4. Deduplicate by name + brokerage.
 
 Write `output/agents_raw.csv` with columns:
