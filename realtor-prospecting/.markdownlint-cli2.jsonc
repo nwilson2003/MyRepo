@@ -1,0 +1,12 @@
+{
+  "config": {
+    "default": true,
+    // Agent files lead with YAML frontmatter, not a top-level heading.
+    "MD041": false,
+    // Prose lines here are long by design; wrapping hurts readability more than it helps.
+    "MD013": false,
+    // Compact-style tables (no padding spaces) are used throughout scoring.md.
+    "MD060": false
+  },
+  "globs": ["**/*.md"]
+}

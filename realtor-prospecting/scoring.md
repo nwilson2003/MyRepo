@@ -10,5 +10,6 @@ Score each agent 0–100.
 | Tenure | 15% | 3–15 years licensed = full points; under 2 or over 25 = half. |
 
 Rules:
+
 - Rows with `unverified` volume get a score but are flagged `needs_review = yes`.
 - Tier: A = 75+, B = 55–74, C = below 55.

@@ -1,0 +1,29 @@
+name: Lint realtor prospecting docs
+
+on:
+  push:
+    paths:
+      - "realtor-prospecting/**"
+      - ".github/workflows/lint-realtor-prospecting.yml"
+  pull_request:
+    paths:
+      - "realtor-prospecting/**"
+      - ".github/workflows/lint-realtor-prospecting.yml"
+
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: "realtor-prospecting/**/*.md"
+
+  validate-agent-frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 realtor-prospecting/scripts/validate_agents.py
